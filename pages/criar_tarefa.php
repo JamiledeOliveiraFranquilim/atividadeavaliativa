@@ -1,5 +1,5 @@
 <?php
-require_once '../includes/config.php';
+require_once 'conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario_id = $_POST['usuario_id'];
@@ -13,17 +13,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bind_param("isss", $usuario_id, $descricao, $setor, $prioridade);
     
     if ($stmt->execute()) {
-        $_SESSION['mensagem'] = "Tarefa cadastrada com sucesso!";
-        $_SESSION['tipo'] = "success";
+        setMensagem("Tarefa cadastrada com sucesso!", "success");
     } else {
-        $_SESSION['mensagem'] = "Erro ao cadastrar tarefa: " . $conn->error;
-        $_SESSION['tipo'] = "error";
+        setMensagem("Erro ao cadastrar tarefa: " . $conn->error, "error");
     }
     
     $stmt->close();
     $conn->close();
     
-    header("Location: ../cadastro_tarefa.php");
+    header("Location: cadastro_tarefa.php");
+    exit();
+} else {
+    header("Location: cadastro_tarefa.php");
     exit();
 }
 ?>
