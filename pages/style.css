@@ -1,3 +1,21 @@
+:root {
+    --primary-color: #3498DB;
+    --primary-dark: #2980B9;
+    --secondary-color: #2ECC71;
+    --secondary-dark: #27AE60;
+    --danger-color: #E74C3C;
+    --danger-dark: #C0392B;
+    --warning-color: #F39C12;
+    --dark-color: #2C3E50;
+    --light-color: #ECF0F1;
+    --gray-color: #95A5A6;
+    --white: #FFFFFF;
+    --shadow: 0 2px 10px rgba(0,0,0,0.1);
+    --shadow-hover: 0 4px 20px rgba(0,0,0,0.15);
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -8,114 +26,120 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     min-height: 100vh;
-    padding: 20px;
+    padding: 0;
 }
 
-.container {
-    max-width: 1400px;
+/* Navbar Topo Centralizado */
+.navbar {
+    background: var(--white);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 15px 20px;
+}
+
+.navbar-container {
+    max-width: 1200px;
     margin: 0 auto;
-}
-
-/* Header */
-.header {
-    background: white;
-    border-radius: 15px;
-    padding: 20px 30px;
-    margin-bottom: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    gap: 30px;
 }
 
-.logo h1 {
-    color: #667eea;
-    font-size: 28px;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.logo p {
-    color: #666;
-    font-size: 14px;
+.logo-img {
+    width: 65px;
+    height: 65px;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
-.nav-buttons {
+.logo-text h1 {
+    color: var(--primary-color);
+    font-size: 22px;
+    margin-bottom: 2px;
+}
+
+.logo-text p {
+    color: var(--gray-color);
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.nav-links {
     display: flex;
     gap: 15px;
 }
 
-.btn {
+/* Botões da Navbar */
+.nav-btn {
     padding: 10px 20px;
     border: none;
     border-radius: 8px;
-    cursor: pointer;
     font-size: 14px;
     font-weight: 600;
-    transition: all 0.3s ease;
+    cursor: pointer;
+    transition: var(--transition);
     text-decoration: none;
     display: inline-block;
+    text-align: center;
 }
 
-.btn-primary {
-    background: #667eea;
-    color: white;
+.nav-btn-primary {
+    background: var(--primary-color);
+    color: var(--white);
 }
 
-.btn-primary:hover {
-    background: #5a67d8;
+.nav-btn-primary:hover {
+    background: var(--primary-dark);
     transform: translateY(-2px);
+    box-shadow: var(--shadow);
 }
 
-.btn-secondary {
-    background: #48bb78;
-    color: white;
+.nav-btn-danger {
+    background: var(--danger-color);
+    color: var(--white);
 }
 
-.btn-secondary:hover {
-    background: #38a169;
+.nav-btn-danger:hover {
+    background: var(--danger-dark);
     transform: translateY(-2px);
+    box-shadow: var(--shadow);
 }
 
-.btn-danger {
-    background: #f56565;
-    color: white;
+/* Container principal do Kanban com espaçamento da navbar */
+.kanban-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px 40px 20px;
 }
 
-.btn-danger:hover {
-    background: #e53e3e;
-}
-
-.btn-warning {
-    background: #ed8936;
-    color: white;
-}
-
-.btn-warning:hover {
-    background: #dd6b20;
-}
-
-.btn-sm {
-    padding: 5px 12px;
-    font-size: 12px;
-}
-
-/* Kanban Board */
+/* KANBAN BOARD */
 .kanban-board {
     display: flex;
     gap: 25px;
     overflow-x: auto;
     padding-bottom: 10px;
+    margin-top: 20px;
 }
 
 .column {
     flex: 1;
-    min-width: 300px;
+    min-width: 320px;
     background: #f7fafc;
-    border-radius: 15px;
+    border-radius: 18px;
     padding: 20px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
 }
 
+/* CABEÇALHO DAS COLUNAS */
 .column-header {
     display: flex;
     justify-content: space-between;
@@ -126,40 +150,56 @@ body {
 }
 
 .column-header h2 {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 700;
 }
 
 .column-header .count {
-    background: rgba(0,0,0,0.1);
-    padding: 4px 12px;
+    background: rgba(0,0,0,0.08);
+    padding: 5px 12px;
     border-radius: 20px;
-    font-size: 14px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 700;
 }
 
-.column-a-fazer .column-header { border-bottom-color: #4299e1; }
-.column-a-fazer .column-header h2 { color: #4299e1; }
+.column-a-fazer .column-header {
+    border-bottom-color: #4299e1;
+}
 
-.column-fazendo .column-header { border-bottom-color: #ed8936; }
-.column-fazendo .column-header h2 { color: #ed8936; }
+.column-a-fazer .column-header h2 {
+    color: #4299e1;
+}
 
-.column-concluido .column-header { border-bottom-color: #48bb78; }
-.column-concluido .column-header h2 { color: #48bb78; }
+.column-fazendo .column-header {
+    border-bottom-color: #ed8936;
+}
 
-/* Task Cards */
+.column-fazendo .column-header h2 {
+    color: #ed8936;
+}
+
+.column-concluido .column-header {
+    border-bottom-color: #48bb78;
+}
+
+.column-concluido .column-header h2 {
+    color: #48bb78;
+}
+
+/* TASKS */
 .task-list {
     min-height: 400px;
 }
 
 .task-card {
     background: white;
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
     cursor: grab;
+    border-left: 5px solid #667eea;
 }
 
 .task-card:active {
@@ -167,29 +207,30 @@ body {
 }
 
 .task-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.15);
 }
 
 .task-desc {
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 12px;
     color: #2d3748;
+    line-height: 1.5;
 }
 
 .task-meta {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    margin-bottom: 10px;
-    font-size: 11px;
+    margin-bottom: 12px;
 }
 
 .badge {
-    padding: 3px 8px;
-    border-radius: 12px;
-    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
 }
 
 .badge-usuario {
@@ -222,17 +263,58 @@ body {
     color: #c53030;
 }
 
+/* AÇÕES */
 .task-actions {
     display: flex;
     gap: 8px;
     margin-top: 10px;
     justify-content: flex-end;
+    flex-wrap: wrap;
 }
 
-/* Formulários */
+/* Botões das ações */
+.btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: var(--white);
+}
+
+.btn-danger:hover {
+    background: var(--danger-dark);
+    transform: translateY(-1px);
+}
+
+.btn-sm {
+    padding: 4px 10px;
+    font-size: 11px;
+}
+
+/* FORMULÁRIOS */
 .form-container {
     background: white;
-    border-radius: 15px;
+    border-radius: 18px;
     padding: 30px;
     max-width: 600px;
     margin: 0 auto;
@@ -260,11 +342,11 @@ body {
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 10px 15px;
-    border: 1px solid #e2e8f0;
-    border-radius: 8px;
+    padding: 12px 15px;
+    border: 1px solid #dfe6ee;
+    border-radius: 10px;
     font-size: 14px;
-    transition: border-color 0.3s;
+    transition: 0.3s;
 }
 
 .form-group input:focus,
@@ -272,23 +354,24 @@ body {
 .form-group textarea:focus {
     outline: none;
     border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.15);
 }
 
 textarea {
     resize: vertical;
-    min-height: 80px;
+    min-height: 100px;
 }
 
 .btn-block {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     font-size: 16px;
 }
 
-/* Alertas */
+/* ALERTAS */
 .alert {
-    padding: 12px 20px;
-    border-radius: 8px;
+    padding: 14px 20px;
+    border-radius: 10px;
     margin-bottom: 20px;
 }
 
@@ -304,19 +387,63 @@ textarea {
     border: 1px solid #fc8181;
 }
 
-/* Responsive */
+/* EMPTY MESSAGE */
+.empty-message {
+    text-align: center;
+    color: #718096;
+    padding: 40px 20px;
+    font-size: 14px;
+}
+
+/* RESPONSIVO */
 @media (max-width: 768px) {
+    .kanban-container {
+        padding: 20px 15px 20px 15px;
+    }
+    
+    .navbar-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .logo {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .nav-links {
+        justify-content: center;
+        width: 100%;
+    }
+    
     .kanban-board {
         flex-direction: column;
+        margin-top: 10px;
     }
     
     .column {
         min-width: 100%;
     }
     
-    .header {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
+    .task-actions {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .kanban-container {
+        padding: 15px 10px 20px 10px;
+    }
+    
+    .column {
+        padding: 15px;
+    }
+    
+    .column-header h2 {
+        font-size: 18px;
+    }
+    
+    .task-card {
+        padding: 12px;
     }
 }
