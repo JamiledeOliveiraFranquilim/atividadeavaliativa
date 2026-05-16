@@ -1,5 +1,5 @@
 <?php
-require_once 'conexao.php';
+require_once '../conexao.php';
 verificarLogin();
 
 $id = $_GET['id'] ?? 0;
@@ -16,5 +16,5 @@ if ($id) {
     }
 }
 
-header('Location: index.php');
+header('Location: ../index.php');
 exit;

@@ -1,0 +1,291 @@
+/* ============================================================
+   TaskSync — Cadastro de Usuário
+   Mesmo design system: dark slate + teal/cyan
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* ── Variáveis ─────────────────────────────────────────────── */
+:root {
+    --brand-bg:        #1e2535;
+    --brand-surface:   #2d3748;
+    --brand-surface-2: #3a4560;
+
+    --brand-teal:      #1de9b6;
+    --brand-teal-dim:  #17c99b;
+    --brand-teal-glow: rgba(29, 233, 182, 0.18);
+
+    --brand-white:     #f0f4f8;
+    --brand-text:      #e2e8f0;
+    --brand-muted:     #8898b0;
+
+    --danger-color:    #ff5c6a;
+    --white:           #ffffff;
+
+    --radius-sm:   8px;
+    --radius-md:   14px;
+    --radius-lg:   20px;
+    --transition:  all 0.25s ease;
+    --shadow-md:   0 6px 24px rgba(0,0,0,0.4);
+    --shadow-teal: 0 4px 18px rgba(29, 233, 182, 0.25);
+}
+
+/* ── Reset & Base ───────────────────────────────────────────── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--brand-bg);
+    background-image:
+        linear-gradient(rgba(29, 233, 182, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(29, 233, 182, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    min-height: 100vh;
+    color: var(--brand-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+}
+
+/* ── Container ──────────────────────────────────────────────── */
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    animation: fadeIn 0.5s ease;
+}
+
+/* ── Logo centralizada no topo do card ─────────────────────── */
+.form-container::before {
+    content: '';
+    display: block;
+    width: 72px;
+    height: 72px;
+    background: url('../assets/image/logo.jpg') center/cover;
+    border-radius: var(--radius-sm);
+    margin: 0 auto 20px;
+    outline: 2px solid rgba(29, 233, 182, 0.4);
+    outline-offset: 2px;
+}
+
+/* ── Form Container ─────────────────────────────────────────── */
+.form-container {
+    background: var(--brand-surface);
+    border-radius: var(--radius-lg);
+    padding: 40px 36px;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(29, 233, 182, 0.1);
+    animation: slideUp 0.45s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* linha decorativa teal no topo */
+.form-container > *:first-child::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--brand-teal), transparent);
+    pointer-events: none;
+}
+
+.form-container h2 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+    color: var(--brand-white);
+    text-align: center;
+    margin-bottom: 28px;
+    /* esconde o emoji para um visual mais limpo */
+    font-size: 0;
+}
+
+/* substitui o h2 com texto limpo via pseudo */
+.form-container h2::after {
+    content: 'Criar Conta';
+    font-size: 24px;
+    display: block;
+}
+
+/* ── Form Groups ────────────────────────────────────────────── */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--brand-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--brand-bg);
+    border: 1.5px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--brand-text);
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--brand-teal);
+    box-shadow: 0 0 0 3px var(--brand-teal-glow);
+}
+
+/* ── Select customizado ─────────────────────────────────────── */
+select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231de9b6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 16px;
+}
+
+select option {
+    background: var(--brand-surface);
+    color: var(--brand-text);
+}
+
+/* ── Botões ─────────────────────────────────────────────────── */
+.btn {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    padding: 12px 24px;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+}
+
+.btn-primary {
+    background: var(--brand-teal);
+    color: #0f1923;
+}
+
+.btn-primary:hover {
+    background: var(--brand-teal-dim);
+    box-shadow: var(--shadow-teal);
+    transform: translateY(-2px);
+}
+
+.btn-block {
+    width: 100%;
+    margin-top: 8px;
+    padding: 13px;
+    font-size: 15px;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* ── Alerts ─────────────────────────────────────────────────── */
+.alert {
+    padding: 13px 16px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+    font-size: 13.5px;
+    font-weight: 500;
+    animation: slideDown 0.3s ease;
+}
+
+.alert-success {
+    background: rgba(29, 233, 182, 0.12);
+    color: var(--brand-teal);
+    border: 1px solid rgba(29, 233, 182, 0.3);
+}
+
+.alert-error {
+    background: rgba(255, 92, 106, 0.12);
+    color: #ff8a94;
+    border: 1px solid rgba(255, 92, 106, 0.3);
+}
+
+/* ── Link de login ──────────────────────────────────────────── */
+.form-container div[style] {
+    margin-top: 24px !important;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    text-align: center;
+}
+
+.form-container div[style] p {
+    font-size: 13px;
+    color: var(--brand-muted);
+}
+
+.form-container div[style] a {
+    color: var(--brand-teal);
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.form-container div[style] a:hover {
+    color: var(--brand-teal-dim);
+    text-decoration: underline;
+}
+
+/* ── Placeholder & Focus ────────────────────────────────────── */
+::placeholder {
+    color: var(--brand-muted);
+    opacity: 0.55;
+}
+
+:focus-visible {
+    outline: 2px solid var(--brand-teal);
+    outline-offset: 2px;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--brand-surface); border-radius: 99px; }
+::-webkit-scrollbar-thumb { background: var(--brand-teal); border-radius: 99px; }
+
+/* ── Animações ──────────────────────────────────────────────── */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(28px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-14px); opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* ── Responsivo ─────────────────────────────────────────────── */
+@media (max-width: 480px) {
+    body { padding: 24px 12px; align-items: flex-start; }
+    .form-container { padding: 28px 18px; }
+    .form-container h2::after { font-size: 20px; }
+    .btn-block { font-size: 14px; }
+}

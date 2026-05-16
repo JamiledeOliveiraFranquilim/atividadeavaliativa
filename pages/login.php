@@ -1,5 +1,5 @@
 <?php
-require_once 'conexao.php';
+require_once '../conexao.php';
 
 $erro = '';
 
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['usuario_setor'] = $usuario['setor'];
             $_SESSION['usuario_tipo'] = $usuario['tipo'];
 
-            header('Location: index.php');
+            header('Location: ../index.php');
             exit;
 
         } else {
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <title>TaskSync - Login</title>
 
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="../login.css">
 
 </head>
 
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="logo-central">
 
-            <img src="assets/image/logo.jpg" alt="Logo TaskSync" class="logo-img">
+            <img src="../assets/image/logo.jpg" alt="Logo TaskSync" class="logo-img">
 
             <p>Gerencie suas tarefas com eficiência</p>
 

@@ -1,0 +1,545 @@
+/* ============================================================
+   TaskSync — Design System
+   Cores extraídas da logo: dark slate + teal/cyan + branco
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* ── Variáveis ─────────────────────────────────────────────── */
+:root {
+    /* Cores da marca */
+    --brand-bg:        #1e2535;   /* fundo geral — mais escuro que a logo */
+    --brand-surface:   #2d3748;   /* superfície navbar / cards escuros */
+    --brand-surface-2: #3a4560;   /* hover states, bordas */
+
+    --brand-teal:      #1de9b6;   /* acento principal — o verde-teal da curva */
+    --brand-teal-dim:  #17c99b;   /* teal escurecido para hover */
+    --brand-teal-glow: rgba(29, 233, 182, 0.18);
+
+    --brand-white:     #f0f4f8;
+    --brand-text:      #e2e8f0;
+    --brand-muted:     #8898b0;
+
+    /* Semânticas */
+    --primary-color:   var(--brand-teal);
+    --primary-dark:    var(--brand-teal-dim);
+    --danger-color:    #ff5c6a;
+    --danger-dark:     #e04050;
+    --white:           #ffffff;
+
+    /* Status das colunas */
+    --col-todo:        #4299e1;   /* azul */
+    --col-doing:       #f6ad55;   /* âmbar */
+    --col-done:        var(--brand-teal); /* teal da marca */
+
+    /* UI */
+    --radius-sm:   8px;
+    --radius-md:   14px;
+    --radius-lg:   20px;
+    --transition:  all 0.25s ease;
+    --shadow-sm:   0 2px 8px rgba(0,0,0,0.25);
+    --shadow-md:   0 6px 20px rgba(0,0,0,0.35);
+    --shadow-teal: 0 4px 18px rgba(29, 233, 182, 0.25);
+}
+
+/* ── Reset & Base ───────────────────────────────────────────── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--brand-bg);
+    /* Grade sutil inspirada no monitor da logo */
+    background-image:
+        linear-gradient(rgba(29, 233, 182, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(29, 233, 182, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    min-height: 100vh;
+    color: var(--brand-text);
+}
+
+/* ── Navbar ─────────────────────────────────────────────────── */
+.navbar {
+    background: var(--brand-surface);
+    border-bottom: 1px solid rgba(29, 233, 182, 0.15);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 12px 24px;
+}
+
+.navbar-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo-img {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    /* borda teal sutil para reforçar identidade */
+    outline: 2px solid rgba(29, 233, 182, 0.4);
+    outline-offset: 2px;
+}
+
+.logo-text h1 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--brand-white);
+    letter-spacing: -0.5px;
+}
+
+.logo-text p {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    color: var(--brand-teal);
+    text-transform: uppercase;
+    margin-top: 2px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* ── Botões ─────────────────────────────────────────────────── */
+.btn,
+.nav-btn {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    letter-spacing: 0.2px;
+}
+
+.nav-btn {
+    padding: 10px 20px;
+    font-size: 13.5px;
+}
+
+.btn {
+    padding: 6px 14px;
+    font-size: 12px;
+}
+
+.btn-sm {
+    padding: 5px 12px;
+    font-size: 11.5px;
+}
+
+/* Primary — teal da marca */
+.btn-primary,
+.nav-btn-primary {
+    background: var(--brand-teal);
+    color: #0f1923;           /* texto escuro sobre teal */
+}
+
+.btn-primary:hover,
+.nav-btn-primary:hover {
+    background: var(--brand-teal-dim);
+    box-shadow: var(--shadow-teal);
+    transform: translateY(-2px);
+}
+
+/* Danger */
+.btn-danger,
+.nav-btn-danger {
+    background: transparent;
+    color: var(--danger-color);
+    border: 1.5px solid var(--danger-color);
+}
+
+.btn-danger:hover,
+.nav-btn-danger:hover {
+    background: var(--danger-color);
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 14px rgba(255, 92, 106, 0.35);
+}
+
+/* ── Kanban Board ───────────────────────────────────────────── */
+.kanban-board {
+    display: flex;
+    gap: 22px;
+    overflow-x: auto;
+    padding: 28px 24px 36px;
+    max-width: 1300px;
+    margin: 0 auto;
+    /* scroll suave no mobile */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.kanban-board::-webkit-scrollbar {
+    height: 6px;
+}
+.kanban-board::-webkit-scrollbar-track {
+    background: var(--brand-surface);
+    border-radius: 99px;
+}
+.kanban-board::-webkit-scrollbar-thumb {
+    background: var(--brand-teal);
+    border-radius: 99px;
+}
+
+/* ── Colunas ────────────────────────────────────────────────── */
+.column {
+    flex: 1;
+    min-width: 310px;
+    background: var(--brand-surface);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255,255,255,0.05);
+    scroll-snap-align: start;
+}
+
+.column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px solid;
+}
+
+.column-header h2 {
+    font-family: 'Sora', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.column-header .count {
+    font-family: 'Sora', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 3px 11px;
+    border-radius: 99px;
+    background: rgba(255,255,255,0.07);
+}
+
+/* Cores por coluna */
+.column-a-fazer .column-header  { border-bottom-color: var(--col-todo); }
+.column-a-fazer .column-header h2 { color: var(--col-todo); }
+.column-a-fazer .column-header .count { color: var(--col-todo); }
+
+.column-fazendo .column-header  { border-bottom-color: var(--col-doing); }
+.column-fazendo .column-header h2 { color: var(--col-doing); }
+.column-fazendo .column-header .count { color: var(--col-doing); }
+
+.column-concluido .column-header { border-bottom-color: var(--col-done); }
+.column-concluido .column-header h2 { color: var(--col-done); }
+.column-concluido .column-header .count { color: var(--col-done); }
+
+/* ── Task Cards ─────────────────────────────────────────────── */
+.task-list {
+    min-height: 360px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task-card {
+    background: #1e2535;
+    border-radius: var(--radius-md);
+    padding: 16px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    cursor: grab;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-left: 4px solid var(--brand-teal);
+    position: relative;
+    overflow: hidden;
+}
+
+/* brilho sutil no topo */
+.task-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(29,233,182,0.3), transparent);
+}
+
+.task-card:active { cursor: grabbing; }
+
+.task-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.45), 0 0 0 1px rgba(29,233,182,0.15);
+    border-left-color: var(--brand-teal);
+}
+
+/* cor da borda esquerda por coluna */
+.column-a-fazer  .task-card { border-left-color: var(--col-todo); }
+.column-fazendo  .task-card { border-left-color: var(--col-doing); }
+.column-concluido .task-card { border-left-color: var(--col-done); }
+
+.task-desc {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--brand-white);
+    line-height: 1.55;
+    margin-bottom: 12px;
+}
+
+/* ── Badges ─────────────────────────────────────────────────── */
+.task-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.badge {
+    padding: 3px 10px;
+    border-radius: 99px;
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+.badge-usuario {
+    background: rgba(107, 70, 193, 0.25);
+    color: #c4b5fd;
+    border: 1px solid rgba(107, 70, 193, 0.4);
+}
+
+.badge-setor {
+    background: rgba(66, 153, 225, 0.2);
+    color: #90cdf4;
+    border: 1px solid rgba(66, 153, 225, 0.35);
+}
+
+.badge-data {
+    background: rgba(246, 173, 85, 0.15);
+    color: #fbd38d;
+    border: 1px solid rgba(246, 173, 85, 0.3);
+}
+
+.prioridade-baixa {
+    background: rgba(29, 233, 182, 0.12);
+    color: var(--brand-teal);
+    border: 1px solid rgba(29, 233, 182, 0.3);
+}
+
+.prioridade-media {
+    background: rgba(246, 173, 85, 0.15);
+    color: #f6ad55;
+    border: 1px solid rgba(246, 173, 85, 0.35);
+}
+
+.prioridade-alta {
+    background: rgba(255, 92, 106, 0.15);
+    color: #ff8a94;
+    border: 1px solid rgba(255, 92, 106, 0.35);
+}
+
+/* ── Task Actions ───────────────────────────────────────────── */
+.task-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+/* ── Formulários ────────────────────────────────────────────── */
+.form-container {
+    background: var(--brand-surface);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    max-width: 580px;
+    margin: 40px auto;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(29, 233, 182, 0.1);
+}
+
+.form-container h2 {
+    font-family: 'Sora', sans-serif;
+    color: var(--brand-teal);
+    margin-bottom: 28px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--brand-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--brand-bg);
+    border: 1.5px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--brand-text);
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--brand-teal);
+    box-shadow: 0 0 0 3px var(--brand-teal-glow);
+}
+
+.form-group select option {
+    background: var(--brand-surface);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.btn-block {
+    width: 100%;
+    padding: 14px;
+    font-size: 15px;
+    border-radius: var(--radius-sm);
+    margin-top: 4px;
+}
+
+/* ── Alertas ────────────────────────────────────────────────── */
+.alert {
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.alert-success {
+    background: rgba(29, 233, 182, 0.12);
+    color: var(--brand-teal);
+    border: 1px solid rgba(29, 233, 182, 0.3);
+}
+
+.alert-error {
+    background: rgba(255, 92, 106, 0.12);
+    color: #ff8a94;
+    border: 1px solid rgba(255, 92, 106, 0.3);
+}
+
+/* ── Empty Message ──────────────────────────────────────────── */
+.empty-message {
+    text-align: center;
+    color: var(--brand-muted);
+    padding: 48px 20px;
+    font-size: 13px;
+    border: 1.5px dashed rgba(255,255,255,0.07);
+    border-radius: var(--radius-md);
+}
+
+/* ── Toast ──────────────────────────────────────────────────── */
+.toast-message {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--brand-teal);
+    color: #0f1923;
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 12px 22px;
+    border-radius: var(--radius-sm);
+    z-index: 9999;
+    animation: slideIn 0.3s ease;
+    box-shadow: var(--shadow-teal);
+}
+
+/* ── Animações ──────────────────────────────────────────────── */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { transform: translateX(110%); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+}
+
+.task-card.movendo {
+    opacity: 0.45;
+    transform: scale(0.96);
+}
+
+/* ── Responsivo ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .navbar-container {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .logo {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .kanban-board {
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .column {
+        min-width: 100%;
+        scroll-snap-align: none;
+    }
+
+    .task-actions {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .column { padding: 14px; }
+    .column-header h2 { font-size: 15px; }
+    .task-card { padding: 12px; }
+    .form-container { padding: 24px 18px; margin: 20px 12px; }
+}

@@ -1,5 +1,5 @@
 <?php
-require_once 'conexao.php';
+require_once '../conexao.php';
 $mensagem = getMensagem();
 ?>
 <!DOCTYPE html>
@@ -8,7 +8,7 @@ $mensagem = getMensagem();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar Tarefas - TaskSync</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <header class="header">
@@ -37,21 +37,21 @@ $mensagem = getMensagem();
         <div class="kanban-board">
             <div class="kanban-column column-a-fazer">
                 <div class="column-header">
-                    <h3>📋 A Fazer</h3>
+                    <h3>A Fazer</h3>
                 </div>
                 <div id="aFazerTasks"></div>
             </div>
 
             <div class="kanban-column column-fazendo">
                 <div class="column-header">
-                    <h3>⚙️ Fazendo</h3>
+                    <h3>Fazendo</h3>
                 </div>
                 <div id="FazendoTasks"></div>
             </div>
 
             <div class="kanban-column column-concluido">
                 <div class="column-header">
-                    <h3>✅ Concluído</h3>
+                    <h3>Concluído</h3>
                 </div>
                 <div id="ConcluidoTasks"></div>
             </div>

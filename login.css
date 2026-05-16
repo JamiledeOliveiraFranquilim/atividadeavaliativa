@@ -1,0 +1,258 @@
+/* ============================================================
+   TaskSync — Login
+   Mesmo design system: dark slate + teal/cyan
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap');
+
+/* ── Variáveis ─────────────────────────────────────────────── */
+:root {
+    --brand-bg:        #1e2535;
+    --brand-surface:   #2d3748;
+
+    --brand-teal:      #1de9b6;
+    --brand-teal-dim:  #17c99b;
+    --brand-teal-glow: rgba(29, 233, 182, 0.18);
+
+    --brand-white:     #f0f4f8;
+    --brand-text:      #e2e8f0;
+    --brand-muted:     #8898b0;
+
+    --radius-sm:   8px;
+    --radius-lg:   20px;
+    --transition:  all 0.25s ease;
+    --shadow-md:   0 6px 24px rgba(0,0,0,0.4);
+    --shadow-teal: 0 4px 18px rgba(29, 233, 182, 0.25);
+}
+
+/* ── Reset & Base ───────────────────────────────────────────── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--brand-bg);
+    background-image:
+        linear-gradient(rgba(29, 233, 182, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(29, 233, 182, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 16px;
+}
+
+/* ── Container ──────────────────────────────────────────────── */
+.login-container {
+    width: 100%;
+    max-width: 420px;
+    animation: fadeIn 0.5s ease;
+}
+
+/* ── Logo central ───────────────────────────────────────────── */
+.logo-central {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.logo-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    margin-bottom: 14px;
+    outline: 2px solid rgba(29, 233, 182, 0.4);
+    outline-offset: 3px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.4), var(--shadow-teal);
+}
+
+.logo-central h1 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 32px;
+    color: var(--brand-white);
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+}
+
+.logo-central p {
+    font-size: 13px;
+    color: var(--brand-muted);
+    letter-spacing: 0.3px;
+}
+
+/* ── Form Container ─────────────────────────────────────────── */
+.form-container {
+    background: var(--brand-surface);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(29, 233, 182, 0.1);
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.45s ease;
+}
+
+/* linha decorativa teal no topo */
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--brand-teal), transparent);
+}
+
+.form-container h2 {
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: var(--brand-white);
+    text-align: center;
+    margin-bottom: 26px;
+}
+
+/* ── Form Groups ────────────────────────────────────────────── */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--brand-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px 16px;
+    background: var(--brand-bg);
+    border: 1.5px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--brand-text);
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--brand-teal);
+    box-shadow: 0 0 0 3px var(--brand-teal-glow);
+}
+
+/* ── Botão ──────────────────────────────────────────────────── */
+.btn {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition);
+    letter-spacing: 0.2px;
+}
+
+.btn-primary {
+    background: var(--brand-teal);
+    color: #0f1923;
+}
+
+.btn-primary:hover {
+    background: var(--brand-teal-dim);
+    box-shadow: var(--shadow-teal);
+    transform: translateY(-2px);
+}
+
+.btn-block {
+    width: 100%;
+    padding: 13px;
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* ── Alertas ────────────────────────────────────────────────── */
+.alert {
+    padding: 13px 16px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+    font-size: 13.5px;
+    font-weight: 500;
+    animation: slideDown 0.3s ease;
+}
+
+.alert-error {
+    background: rgba(255, 92, 106, 0.12);
+    color: #ff8a94;
+    border: 1px solid rgba(255, 92, 106, 0.3);
+}
+
+/* ── Link cadastro ──────────────────────────────────────────── */
+.link-cadastro {
+    text-align: center;
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.link-cadastro p {
+    font-size: 13px;
+    color: var(--brand-muted);
+}
+
+.link-cadastro a {
+    color: var(--brand-teal);
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.link-cadastro a:hover {
+    color: var(--brand-teal-dim);
+    text-decoration: underline;
+}
+
+/* ── Placeholder & Focus ────────────────────────────────────── */
+::placeholder {
+    color: var(--brand-muted);
+    opacity: 0.55;
+}
+
+:focus-visible {
+    outline: 2px solid var(--brand-teal);
+    outline-offset: 2px;
+}
+
+/* ── Animações ──────────────────────────────────────────────── */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(28px); opacity: 0; }
+    to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-14px); opacity: 0; }
+    to   { transform: translateY(0);     opacity: 1; }
+}
+
+/* ── Responsivo ─────────────────────────────────────────────── */
+@media (max-width: 480px) {
+    body { align-items: flex-start; padding: 24px 12px; }
+    .logo-img { width: 90px; height: 90px; }
+    .logo-central h1 { font-size: 26px; }
+    .form-container { padding: 28px 18px; }
+}

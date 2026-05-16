@@ -1,5 +1,5 @@
 <?php
-require_once 'conexao.php';
+require_once '../conexao.php';
 
 $erro = '';
 $sucesso = '';
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskSync - Cadastro</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cadastro_usuario.css">
 </head>
 <body>
     <div class="container">
@@ -110,7 +110,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             <div style="text-align: center; margin-top: 20px;">
                 <p>Já tem uma conta? <a href="login.php">Faça login</a></p>
-                <a href="index.php" style="font-size: 14px;">← Voltar</a>
             </div>
         </div>
     </div>

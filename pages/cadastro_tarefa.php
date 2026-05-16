@@ -1,5 +1,5 @@
 <?php
-require_once 'conexao.php';
+require_once '../conexao.php';
 verificarLogin();
 
 $mensagem = '';
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_POST['descricao'] = '';
             } else {
                 $mensagem = 'Tarefa cadastrada com sucesso!';
-                echo "<script>setTimeout(() => { window.location.href = 'index.php'; }, 1500);</script>";
+                echo "<script>setTimeout(() => { window.location.href = '../index.php'; }, 1500);</script>";
             }
         } catch(PDOException $e) {
             $erro = 'Erro ao cadastrar: ' . $e->getMessage();
@@ -52,97 +52,21 @@ $ultimas_tarefas = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskSync - Nova Tarefa</title>
-    <link rel="stylesheet" href="cadastro_tarefas.css">
-    <style>
-        .form-row {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        .form-row .form-group {
-            flex: 1;
-            margin-bottom: 0;
-        }
-        .button-group {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .button-group .btn {
-            flex: 1;
-        }
-        .ultimas-tarefas {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #ECF0F1;
-        }
-        .ultimas-tarefas h3 {
-            color: #2C3E50;
-            margin-bottom: 15px;
-            font-size: 16px;
-        }
-        .lista-rapida {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .tarefa-item {
-            background: #F8F9FA;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .tarefa-item:hover {
-            background: #3498DB;
-            color: white;
-        }
-        .tarefa-desc-preview {
-            max-width: 200px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-        .toast-message {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #2ECC71;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            z-index: 9999;
-            animation: slideIn 0.3s ease;
-        }
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="cadastro_tarefa.css">
 </head>
 <body>
   <!-- Navbar no Topo Centralizada -->
 <div class="navbar">
     <div class="navbar-container">
         <div class="logo">
-            <img src="assets/image/logo.jpg" alt="Logo TaskSync" class="logo-img">
+            <img src="../assets/image/logo.jpg" alt="Logo TaskSync" class="logo-img">
             <div class="logo-text">
                 <h1>TaskSync</h1>
                 <p>SEU GERENCIADOR DE TAREFAS</p>
             </div>
         </div>
         <div class="nav-links">
-            <a href="index.php" class="nav-btn nav-btn-primary">Voltar ao Kanban</a>
+            <a href="../index.php" class="nav-btn nav-btn-primary">Voltar ao Kanban</a>
             <a href="logout.php" class="nav-btn nav-btn-danger">Sair</a>
         </div>
     </div>
@@ -212,7 +136,6 @@ $ultimas_tarefas = $stmt->fetchAll();
                 <div class="lista-rapida">
                     <?php foreach($ultimas_tarefas as $tarefa): ?>
                         <div class="tarefa-item" onclick="reutilizarTarefa('<?= htmlspecialchars(addslashes($tarefa['descricao'])) ?>', '<?= $tarefa['setor'] ?>', '<?= $tarefa['prioridade'] ?>')">
-                            <span>📋</span>
                             <span class="tarefa-desc-preview"><?= htmlspecialchars(substr($tarefa['descricao'], 0, 30)) ?>...</span>
                         </div>
                     <?php endforeach; ?>
