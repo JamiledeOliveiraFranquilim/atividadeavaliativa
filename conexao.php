@@ -16,7 +16,7 @@ try {
 // Função para verificar se usuário está logado
 function verificarLogin() {
     if (!isset($_SESSION['usuario_id'])) {
-        header('Location: login.php');
+        header('Location: pages/login.php');
         exit;
     }
 }
